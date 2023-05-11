@@ -1,0 +1,47 @@
+<app-header></app-header>
+<div class="container pb-5 mb-2 mt-5">
+    <!-- Alert-->
+    <div *ngIf="msg != ''" class="alert alert-info alert-dismissible fade show text-center mb-30"><span
+            class="alert-close" data-dismiss="alert"></span><i class="fe-icon-award"></i> <strong>{{msg}}</strong></div>
+    <!-- Cart Item-->
+    <div class="cart-item d-md-flex justify-content-between" *ngFor="let cart of carts"><span class="remove-item"
+            (click)="onDelete(cart.id)"><i class="fa fa-times"></i></span>
+
+        <div class="px-3 my-3">
+            <a class="cart-item-product">
+                <div class="cart-item-product-thumb"><img src="{{imgUrl + cart.produit.imgName}}" alt="Product"></div>
+                <div class="cart-item-product-info">
+                    <h4 class="cart-item-product-title">{{cart.produit.name}}</h4><span><strong>Description:</strong>
+                    </span><span>
+                        {{cart.produit.description}} </span>
+                </div>
+            </a>
+        </div>
+        <div class="px-3 my-3 text-center">
+            <div class="cart-item-label">Quantity</div>
+            <div class="count-input">
+                <select class="form-control" [ngModel]="cart.quantity" (ngModelChange)="onChange(cart, $event)">
+                    <option *ngFor="let i of getArrayOfNumber(cart.produit.quantite)" value="{{i}}">{{i}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="px-3 my-3 text-center">
+            <div class="cart-item-label">Prix</div><span
+                class="text-xl font-weight-medium">{{cart.produit.prix|currency:'TND':'symbol':'2.2-2'}}</span>
+        </div>
+        <div class="px-3 my-3 text-center">
+            <div class="cart-item-label">Discount</div><span class="text-xl font-weight-medium"><button
+                    class="btn btn-outline-success" (click)="onUpdate(cart)">update</button></span>
+        </div>
+    </div>
+
+
+    <!-- Buttons-->
+    <hr class="my-2">
+    <div class="row pt-3 pb-5 mb-2">
+        <div class="col-sm-6 mb-3"><a class="btn btn-style-1 btn-primary btn-block" routerLink="/home"><i
+                    class="fe-icon-credit-card"></i>&nbsp;Retour </a></div>
+    </div>
+
+
+</div>

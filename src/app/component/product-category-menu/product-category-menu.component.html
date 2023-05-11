@@ -1,0 +1,5 @@
+<li>
+    <a class="dropdown-item" routerLink="/admin/produits" routerLinkActive="active-link">All</a>
+    <a *ngFor="let cat of categories" class="dropdown-item" routerLink="/admin/category/{{ cat.id }}"
+        routerLinkActive="active-link">{{ cat.nom }}</a>
+</li>

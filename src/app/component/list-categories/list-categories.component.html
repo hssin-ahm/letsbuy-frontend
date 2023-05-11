@@ -1,0 +1,234 @@
+<!-- HEADER DESKTOP-->
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+    <a class="navbar-brand" href="#">
+        <i class="fa fa-shopping-cart" style="font-size: 25px; margin-left: 5px;"></i>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/admin">Home</a>
+        </li>
+        <li class="nav-item dropdown mr-2">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categories
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          
+           <app-product-category-menu></app-product-category-menu>
+          
+          </div>
+        </li>
+       
+      </ul> 
+    </div>
+    <i class="fas fa-user"></i>
+    <i class="fas fa-user"></i>
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+       
+        <app-login-status></app-login-status>
+     </ul>
+  </nav>  -->
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d3dedf;">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" style="display: flex; justify-content: space-between;">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/admin">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;" routerLink="/admin/produits">Produits</a>
+            </li>
+            <li class="nav-item dropdown mr-2">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Categories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                    <app-product-category-menu></app-product-category-menu>
+
+                </div>
+            </li>
+        </ul>
+        <div class="form-inline my-2 my-lg-0">
+
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+
+                <app-login-status></app-login-status>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- END HEADER DESKTOP-->
+
+
+
+
+
+<!-- END PAGE CONTAINER-->
+
+<div class="container">
+    <div class="container" id="main-container">
+        <div class="row">
+            <div class="col-lg-12 card-margin">
+                <div class="card search-form">
+                    <div class="card-body p-0">
+                        <form id="search-form">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row no-gutters">
+
+                                        <div>
+                                            <form>
+                                                <input (ngModelChange)="searchcategories(key.value)" #key="ngModel"
+                                                    ngModel name="key" type="text" placeholder="Search..."
+                                                    class="form-control" id="search" name="search">
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+                <button style="color: rgba(0, 0, 0, 0.836) ; font-size: 39px;"
+                    aria-label="Example icon button with a home icon" (click)="onOpenModal()">
+                    <i class="fa fa-plus-circle"></i>
+                </button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-margin">
+                    <div class="card-body">
+                        <div class="row search-body">
+                            <div class="col-lg-12">
+                                <div class="search-result">
+                                    <div class="result-header">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="records">Liste des categories:
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="result-body">
+                                        <div class="table-responsive">
+                                            <table class="table widget-26">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" style="font-weight: 450;">Nom
+                                                        </th>
+                                                        <th scope="col" style="font-weight: 450;">Description</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr *ngFor="let categorie of categories">
+
+                                                        <td>
+                                                            <div class="widget-26-job-title"
+                                                                (click)="updatecategorie(categorie?.id)">
+                                                                {{categorie?.nom}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div>
+                                                                <span>{{categorie?.description}}</span>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="widget-30-job-starred">
+                                                                <button (click)="onOpenModal(categorie.id)"
+                                                                    aria-label="Example icon button with a home icon"
+                                                                    data-toggle="modal">
+                                                                    <i class="fa fa-edit" style="margin-right: 15px; ">
+                                                                    </i>
+                                                                </button>
+                                                                <button (click)="onDelete(categorie)"
+                                                                    aria-label="Example icon button with a home icon"
+                                                                    data-toggle="modal">
+                                                                    <i class="fa fa-trash" style="font-size: 15px;"></i>
+                                                                </button>
+
+                                                            </div>
+                                                        </td>
+
+                                                    </tr>
+                                                    <br>
+
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="updateCategorieModal" tabindex="-1" role="dialog" aria-labelledby="userEditModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateCategorieModal">Ajouter une categorie</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #editForm="ngForm">
+                    <div class="form-group">
+                        <input type="hidden" ngModel="{{categorie?.id}}" name="id" class="form-control" id="name"
+                            aria-describedby="emailHelp" placeholder="Name" #id="ngModel">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Nom: </label>
+                        <input type="text" ngModel="{{categorie?.nom}}" name="nom" class="form-control" id="email">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="phone">Description:</label>
+                        <textarea rows="5" type="text" ngModel="{{categorie?.description}}" name="description"
+                            class="form-control" id="jobTitle"></textarea>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" id="colseModel" data-dismiss="modal"
+                            class="btn btn-outline-dark">Close</button>
+                        <button (click)="onUpdateCat(editForm)" data-dismiss="modal"
+                            class="btn btn-outline-success">enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

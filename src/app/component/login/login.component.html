@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="center">
+  <!--alert danger 'Bad credentials'-->
+  <div *ngIf="msg!=''" class="alert alert-danger" style="padding: 10px 35px;">
+    {{msg}}
+  </div>
+  <!--login form-->
+  <h1>Se connecter</h1>
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+
+    <div class="txt_field">
+      <input type="text" ngModel name="userName" id="userName" required>
+      <span></span>
+      <label>Nom d'utilisateur</label>
+    </div>
+    <div class="txt_field">
+      <input type="password" required ngModel name="userPassword" id="userPassword" required>
+      <span></span>
+      <label>Mot de passe</label>
+
+    </div>
+    <input type="submit" value="Se connecter">
+    <a routerLink="/inscrire" style="margin-top: 15px;" id="ajoutContact">S'inscrire</a>
+  </form>
+</div>

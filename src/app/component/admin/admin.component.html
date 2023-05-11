@@ -1,0 +1,224 @@
+<!-- HEADER DESKTOP-->
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+        <i class="fa fa-shopping-cart" style="font-size: 25px; margin-left: 5px;"></i>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/admin">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;" (click)="openCategorieForm()">Cartegories</a>
+            </li>
+            <li class="nav-item dropdown mr-2">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Categories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                    <app-product-category-menu></app-product-category-menu>
+
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    <i class="fas fa-user"></i>
+    <i class="fas fa-user"></i>
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+
+        <app-login-status></app-login-status>
+    </ul>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d3dedf;">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" style="display: flex; justify-content: space-between;">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/admin">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;" (click)="openCategorieForm()">Cartegories</a>
+            </li>
+            <li class="nav-item dropdown mr-2">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Categories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                    <app-product-category-menu></app-product-category-menu>
+
+                </div>
+            </li>
+        </ul>
+        <div class="form-inline my-2 my-lg-0">
+
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+
+                <app-login-status></app-login-status>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- END HEADER DESKTOP-->
+
+
+
+
+
+<!-- END PAGE CONTAINER-->
+
+<div class="container">
+    <div class="container" id="main-container">
+        <div class="row">
+            <div class="col-lg-12 card-margin">
+                <div class="card search-form">
+                    <div class="card-body p-0">
+                        <form id="search-form">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row no-gutters">
+
+                                        <div>
+                                            <form>
+                                                <input (ngModelChange)="searchProduits(key.value)" #key="ngModel"
+                                                    ngModel name="key" type="text" placeholder="Search..."
+                                                    class="form-control" id="search" name="search">
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+                <button style="color: rgb(0, 0, 0) ; font-size: 39px;" aria-label="Example icon button with a home icon"
+                    (click)="openForm()">
+                    <i class="fa fa-plus-circle"></i>
+                </button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-margin">
+                    <div class="card-body">
+                        <div class="row search-body">
+                            <div class="col-lg-12">
+                                <div class="search-result">
+                                    <div class="result-header">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="records">Liste des produits:
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="result-body">
+                                        <div class="table-responsive">
+                                            <table class="table widget-26">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col" style="font-weight: 450;">Nom
+                                                        </th>
+                                                        <th scope="col" style="font-weight: 450;">Prix
+                                                        </th>
+                                                        <th scope="col" style="font-weight: 450;">Quantite</th>
+                                                        <th scope="col" style="font-weight: 450;">Description</th>
+                                                        <th scope="col" style="font-weight: 450;">Categorie</th>
+                                                        <th scope="col" style="font-weight: 450;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr *ngFor="let produit of produits">
+                                                        <td>
+                                                            <div class="widget-26-job-emp-img">
+                                                                <img src="{{imgUrl + produit?.imgName}}"
+                                                                    alt="Company" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="widget-26-job-title"
+                                                                (click)="updateproduit(produit?.id)">{{produit?.name}}
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="widget-26-job-info">
+
+                                                                <p class="text-muted m-0"> <span
+                                                                        class="location">{{produit?.prix|currency:'TND':'symbol':'2.2-2'}}</span>
+                                                                </p>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+
+                                                            <div class="widget-26-job-salary">{{produit?.quantite}}
+                                                            </div>
+
+                                                        </td>
+                                                        <td>
+                                                            <div>
+                                                                <span>{{produit?.description | slice:0:25}}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div>
+                                                                <span>{{produit?.categorie?.nom}}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="widget-30-job-starred">
+                                                                <button (click)="openForm(produit.id)"
+                                                                    aria-label="Example icon button with a home icon"
+                                                                    data-toggle="modal">
+                                                                    <i class="fa fa-edit" style="margin-right: 15px; ">
+                                                                    </i>
+                                                                </button>
+                                                                <button (click)="onDelete(produit)"
+                                                                    aria-label="Example icon button with a home icon"
+                                                                    data-toggle="modal">
+                                                                    <i class="fa fa-trash" style="font-size: 15px;"></i>
+                                                                </button>
+
+                                                            </div>
+                                                        </td>
+
+                                                    </tr>
+                                                    <br>
+
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

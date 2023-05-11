@@ -1,0 +1,153 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d3dedf;">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" style="display: flex; justify-content: space-between;">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/admin">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;" (click)="openCategorieForm()">Cartegories</a>
+            </li>
+            <li class="nav-item dropdown mr-2">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Categories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                    <app-product-category-menu></app-product-category-menu>
+
+                </div>
+            </li>
+        </ul>
+        <div class="form-inline my-2 my-lg-0">
+
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+
+                <app-login-status></app-login-status>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="view-account">
+        <section class="module">
+            <div class="module-inner">
+                <div class="side-bar">
+                    <div class="user-info">
+                        <br>
+                        <br>
+                        <label for="">Produit image</label>
+                        <img class="img-profile img-circle img-responsive center-block"
+                            src="{{filename != '' ? imgUrl + filename : imgUrl + 'uploadIMG.png'}}" alt="">
+                        <ul class="meta list list-unstyled">
+                            <li class="name"> {{filename}}
+                            </li>
+                        </ul>
+                        <fieldset>
+                            <div class="form-group">
+                                <div>
+                                    <input type="file" (change)="onUploadFiles($event.target.files)" ngModel
+                                        name="files" class="form-control" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <nav class="side-menu">
+                        <ul class="nav">
+                            <li class="active"><a><i class="fa fa-info-circle"></i> produit info</a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="content-panel">
+                    <form class="form-horizontal" #editForm="ngForm">
+                        <fieldset class="fieldset">
+                            <h3 class="fieldset-title">{{title}} un produit</h3>
+                            <input type="hidden" ngModel="{{produit?.id}}" name="id">
+                            <input type="hidden" ngModel="{{filename}}" name="imgName">
+
+                            <br>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Nom: <span
+                                        style="color: red;">*</span></label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" ngModel="{{produit?.name}}" pattern=".{3,}"
+                                        name="name" placeholder="name" required #name="ngModel"
+                                        [class.is-invalid]="name.invalid && name.touched">
+                                    <small class="text-danger" [class.d-none]="name.valid || name.untouched">Nom est
+                                        Champs must be at least 3 character</small>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Prix: <span
+                                        style="color: red;">*</span></label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                    <input type="number" class="form-control" ngModel="{{produit?.prix}}" name="prix"
+                                        placeholder="prix" required #prix="ngModel"
+                                        [class.is-invalid]="prix.invalid && prix.touched">
+                                    <small class="text-danger" [class.d-none]="prix.valid || prix.untouched">Prix est
+                                        Champs obligatoires</small>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Quantité: <span
+                                        style="color: red;">*</span></label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                    <input type="number" class="form-control" ngModel="{{produit?.quantite}}"
+                                        name="quantite" placeholder="quantite" required #quantite="ngModel"
+                                        [class.is-invalid]="quantite.invalid && quantite.touched">
+                                    <small class="text-danger"
+                                        [class.d-none]="quantite.valid || quantite.untouched">Quantite est
+                                        Champs obligatoires</small>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label class="col-md-2  col-sm-3 col-xs-12 control-label">Description:</label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                    <textarea rows="5" class="form-control" name="description"
+                                        ngModel="{{produit?.description}}" pattern=".{0,150}" #description="ngModel"
+                                        placeholder="Description de produit">
+                                    </textarea>
+                                    <small class="text-danger"
+                                        [class.d-none]="description.valid || description.untouched">max 150
+                                        character</small>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label class="col-md-2  col-sm-3 col-xs-12 control-label">Categories: <span
+                                        style="color: red;">*</span></label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                    <select class="form-select form-select-sm" aria-label=".form-select-lg example"
+                                        ngModel="{{produit?.categorie?.id}}" name="categorie" required>
+                                        <option *ngFor="let cat of categories" value="{{cat?.id}}">{{ cat?.nom }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <div class="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
+                                    <input class="btn btn-primary" (click)="onUpdateproduit(editForm)" type="submit"
+                                        value="{{title}}" [disabled]="editForm.invalid">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

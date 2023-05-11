@@ -1,0 +1,68 @@
+<!-- HEADER DESKTOP-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">
+    <i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 25px; margin-left: 5px;"></i>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item dropdown mr-2">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+      <li>
+        <a style="color: black;" class="dropdown-item" routerLink="/home" routerLinkActive="active-link"
+          [ngClass]="{'active': idc == null}">All</a>
+        <a *ngFor="let cat of categories" style="color: black;" class="dropdown-item"
+          routerLink="/home/category/{{ cat.id }}" routerLinkActive="active-link"
+          [ngClass]="{'active': idc == cat.id}">{{
+          cat.nom }}</a>
+      </li>
+
+  </div>
+  </li>
+  <!--       
+        <li class="nav-item">
+          <app-login-status></app-login-status>
+          
+        </li> -->
+
+
+  </ul>
+
+
+  <div style="margin-left: auto;  margin-right: 35px;">
+    <form class="form-header" method="GET">
+      <input #myInput class="au-input au-input-xl" type="text" placeholder="Search for data ..." [value]="mc" />
+
+      <button (click)="doSearch(myInput.value)" class="au-btn-submit" type="submit">Search</button>
+    </form>
+
+  </div>
+  </div>
+  <button class="btn btn-primary" (click)="openShopCart()">
+    <i class="fa fa-cart-plus" style="font-size: 30px;"></i>
+    <div style="font-size: 10px;" class="badge bg-danger">{{numCart}}</div>
+  </button>
+  <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+
+    <app-login-status></app-login-status>
+  </ul>
+</nav>
+<!-- END HEADER DESKTOP-->
+
+
+
+
+
+<!-- END PAGE CONTAINER-->

@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div class="center">
+  <div *ngIf="msg!=''" class="alert alert-danger" style="padding: 10px 35px;">
+    {{msg}}
+  </div>
+  <h1>S'inscrire</h1>
+  <form #logupForm="ngForm" (ngSubmit)="logup(logupForm)">
+
+    <div class="txt_field">
+      <input type="text" ngModel name="userName" id="userName" required>
+      <span></span>
+      <label>Nom d'utilisateur</label>
+    </div>
+    <div class="txt_field">
+      <input type="text" required ngModel name="userFirstName" id="Prenom" required>
+      <span></span>
+      <label>Prenom</label>
+    </div>
+    <div class="txt_field">
+      <input type="text" required ngModel name="userLastName" id="nom" required>
+      <span></span>
+      <label>nom</label>
+    </div>
+    <div class="txt_field">
+      <input type="text" required ngModel name="email" id="Mail" required>
+      <span></span>
+      <label>Email</label>
+    </div>
+    <div class="txt_field">
+      <input type="password" required ngModel name="userPassword" id="userPassword" required>
+      <span></span>
+      <label>Mot de passe</label>
+    </div>
+
+    <input type="submit" value="S'inscrire">
+    <a routerLink="/login" style="margin-top: 15px;" id="ajoutContact">Se connecter</a>
+  </form>
+</div>
